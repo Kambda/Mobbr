@@ -2,8 +2,10 @@
 .rbx/
 db/*.sqlite3
 db/*.sqlite3-journal
+nbproject/
 log/*.log*
 tmp/
+
 .sass-cache/
 coverage/*
 backups/*
