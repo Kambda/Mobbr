@@ -1,0 +1,2 @@
+module Mobbr::ProjectHelper
+end

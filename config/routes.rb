@@ -2,12 +2,19 @@ require 'sidekiq/web'
 require 'api/api'
 
 Gitlab::Application.routes.draw do
+  namespace :mobbr do
+    get 'project',                    to: 'mobbr/project#show'
+    get 'project/issues/:id',         to:  'mobbr/project#issues'
+    get 'project/merge_requests/:id', to:  'mobbr/project#merge_requests'
+    get 'project/milestone/:id',      to:  'mobbr/project#milestone'
+  end
+
   #
   # Search
   #
   get 'search' => "search#show"
   get 'search/autocomplete' => "search#autocomplete", as: :search_autocomplete
-
+   
   # API
   API::API.logger Rails.logger
   mount API::API => '/api'
@@ -56,8 +63,8 @@ Gitlab::Application.routes.draw do
         get :starred
       end
     end
-
-    resources :groups, only: [:index]
+    
+      resources :groups, only: [:index]
     root to: "projects#trending"
   end
 
