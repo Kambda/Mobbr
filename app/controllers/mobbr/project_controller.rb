@@ -14,6 +14,7 @@ class Mobbr::ProjectController < ApplicationController
         })
       end
     end
+    render :json => @data 
   end
   
   def issues    

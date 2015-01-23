@@ -3,10 +3,10 @@ require 'api/api'
 
 Gitlab::Application.routes.draw do
   namespace :mobbr , defaults: {format: :json}  do
-    get 'project',                    to: 'mobbr/project#show'
-    get 'project/issues/:id',         to:  'mobbr/project#issues'
-    get 'project/merge_requests/:id', to:  'mobbr/project#merge_requests'
-    get 'project/milestone/:id',      to:  'mobbr/project#milestone'
+    get 'project',                    to:  'project#show'
+    get 'project/issues/:id',         to:  'project#issues'
+    get 'project/merge_requests/:id', to:  'project#merge_requests'
+    get 'project/milestone/:id',      to:  'roject#milestone'
   end
 
   #
