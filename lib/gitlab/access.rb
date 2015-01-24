@@ -15,6 +15,7 @@ module Gitlab
       def values
         options.values
       end
+      
 
       def all_values
         options_with_owner.values
@@ -26,6 +27,7 @@ module Gitlab
           "Reporter"  => REPORTER,
           "Developer" => DEVELOPER,
           "Master"    => MASTER,
+          "Owner"    => OWNER
         }
       end
 
