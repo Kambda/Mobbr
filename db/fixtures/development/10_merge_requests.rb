@@ -16,7 +16,7 @@ Gitlab::Seeder.quiet do
         assignee: project.team.users.sample
       }
 
-      MergeRequests::CreateService.new(project, project.team.users.sample, params).execute
+      #MergeRequests::CreateService.new(project, project.team.users.sample, params).execute
       print '.'
     end
   end
@@ -28,7 +28,7 @@ Gitlab::Seeder.quiet do
     target_branch: 'master',
     title: 'Can be automatically merged'
   }
-  MergeRequests::CreateService.new(project, User.admins.first, params).execute
+  #MergeRequests::CreateService.new(project, User.admins.first, params).execute
   print '.'
 
   params = {
@@ -36,6 +36,6 @@ Gitlab::Seeder.quiet do
     target_branch: 'feature',
     title: 'Cannot be automatically merged'
   }
-  MergeRequests::CreateService.new(project, User.admins.first, params).execute
+ # MergeRequests::CreateService.new(project, User.admins.first, params).execute
   print '.'
 end
