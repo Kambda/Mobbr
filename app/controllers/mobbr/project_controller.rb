@@ -5,17 +5,10 @@ class Mobbr::ProjectController < ApplicationController
   end
   
   def show 
-    Project.all.each do |project|
-      project.milestones.each do |mileston|
-        mileston.participants.each do |participant|
-         @data[:participants].push({
-             :id => participant.email,
-             :role => "coder",
-             :share => "3"
-         })
-       end
-      end
-    end
+  if !params[:group].nil? && !params[:project].nil?
+  
+   
+  end
     render :json => @data 
   end
   
