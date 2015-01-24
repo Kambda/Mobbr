@@ -49,13 +49,22 @@ class Mobbr::ProjectController < ApplicationController
   end
   
   def merge_requests
-    
+    if !params[:group].nil? && !params[:project].nil? && !params[:id].nil?
+    render :json => @data
+    end
   end
   
   def milestone
-    
+    if !params[:group].nil? && !params[:project].nil? && !params[:id].nil?
+    render :json => @data
+    end
   end
   
+  def _milestone
+    @proj =    _projects.find_by(path: params[:project])
+    @milestone ||= @proj.milestones
+
+  end
   
   def _issue
     @proj =    _projects.find_by(path: params[:project])

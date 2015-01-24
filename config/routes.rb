@@ -6,7 +6,7 @@ Gitlab::Application.routes.draw do
     get ':group/:project',                    to:  'project#show'
     get ':group/:project/issues/:id',         to:  'project#issues'
     get ':group/:project/merge_requests/:id', to:  'project#merge_requests'
-    get ':group/:project/milestone/:id',      to:  'roject#milestone'
+    get ':group/:project/milestones/:id',     to: 'project#milestone'
   end
 
   #
