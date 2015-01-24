@@ -50,16 +50,58 @@ class Mobbr::ProjectController < ApplicationController
   
   def merge_requests
     if !params[:group].nil? && !params[:project].nil? && !params[:id].nil?
-    render :json => @data
+      @merge_request = _merge_request.find_by!(iid: params[:id])
+      if @merge_request
+         @merge_request.participants.each do |member|
+           rol = nil
+           @group.group_members.each do  |memb|
+            if member.email == memb.user.email
+              Gitlab::Access.options.keys.collect{|x| rol =  x if Gitlab::Access.options[x] == memb.access_level}
+              Gitlab::Access.options.keys.collect{|x| rol =  '' if  memb.access_level.blank?}
+            end
+           end
+          
+          @data[:participants].push({
+              :id => member.email,
+              :role =>  rol ,
+              :share => '3'
+           })           
+         end
+        render :json => @data
+      end
     end
   end
   
   def milestone
     if !params[:group].nil? && !params[:project].nil? && !params[:id].nil?
-    render :json => @data
+      @milestone = _milestone.find_by!(iid: params[:id])
+      if @milestone
+         @milestone.participants.each do |member|
+           rol = nil
+           @group.group_members.each do  |memb|
+            if member.email == memb.user.email
+              Gitlab::Access.options.keys.collect{|x| rol =  x if Gitlab::Access.options[x] == memb.access_level}
+              Gitlab::Access.options.keys.collect{|x| rol =  '' if  memb.access_level.blank?}
+            end
+           end
+          
+          @data[:participants].push({
+              :id => member.email,
+              :role =>  rol ,
+              :share => '3'
+           })           
+         end
+        render :json => @data
+      end
     end
+   
   end
   
+  def _merge_request
+    @proj =    _projects.find_by(path: params[:project])
+    @merge_request ||= @proj.merge_requests
+  end
+
   def _milestone
     @proj =    _projects.find_by(path: params[:project])
     @milestone ||= @proj.milestones
