@@ -99,27 +99,27 @@ class Mobbr::ProjectController < ApplicationController
   
   def _merge_request
     @proj =    _projects.find_by(path: params[:project])
-    @merge_request ||= @proj.merge_requests
+    @merge_request = @proj.merge_requests
   end
 
   def _milestone
     @proj =    _projects.find_by(path: params[:project])
-    @milestone ||= @proj.milestones
+    @milestone = @proj.milestones
 
   end
   
   def _issue
     @proj =    _projects.find_by(path: params[:project])
-    @issue ||= @proj.issues
+    @issue = @proj.issues
 
   end
   
   def _projects
-    @project ||=  _groups.projects
+    @project =  _groups.projects
   end
   
   def _groups
-    @group   ||= Group.find_by(path: params[:group])
+    @group   = Group.find_by(path: params[:group])
   end
 
   
